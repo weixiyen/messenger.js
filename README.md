@@ -38,6 +38,7 @@ Messenger.js is very flexible and can handle everything you need.
 - Supports Request / Reply Communication using round robin
 - Supports Publish / Subscribe (fanout) Communication
 - Supports Fire and Forget Communication
+- Supports middleware plugin for messenger Listeners (servers)
 - Extremely fast (disables TCP Nagle's algorithm)
 - Fault tolerant: clients will reconnect to servers even if server goes down and comes back later
 - Elegant API
@@ -131,3 +132,48 @@ Example
 Output
 
     > server 1 got some data
+    
+    
+Plugin (Middleware) Example
+-------------
+
+Example
+    
+    var messenger = require('messenger');
+    
+    var server = messenger.createListener(8000);
+    var client = messenger.createClient(8000);
+    
+    function(m, data) {
+      if (data.authorized) {
+        m.next();
+        return;
+      }
+      m.reply({error:'not authorized'});
+    }
+    
+    server.on('protected request', authRequired, function(m, data){
+      m.reply({you:'got past security'})
+    });
+    
+    var auth = false;
+    setInterval(function(){
+      
+      client.request('protected request', {authorized:auth}, function(data){
+        console.log(data);
+      })
+      
+      if (auth === false) {
+        auth = true;
+      } else {
+        auth = false;
+      }
+    }, 2000);
+    
+Output
+    
+    > {error: 'not authorized'}
+    > {you:'got past security'}
+    > {error: 'not authorized'}
+    > {you:'got past security'}
+    > ... etc ...
