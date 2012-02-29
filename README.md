@@ -27,9 +27,9 @@ Example:
 
 Output:
   
-    {'you':'got it'}
-    {'you':'got it'}
-    ...etc...
+    > {'you':'got it'}
+    > {'you':'got it'}
+    > ...etc...
 
 Features
 --------
@@ -144,9 +144,9 @@ Example
     var server = messenger.createListener(8000);
     var client = messenger.createClient(8000);
     
-    function(m, data) {
+    function authRequired(m, data) {
       if (data.authorized) {
-        m.next();
+        m.next(); // continuation passing
         return;
       }
       m.reply({error:'not authorized'});
