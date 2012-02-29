@@ -58,18 +58,19 @@ Example
     var server4 = messenger.createListener('127.0.0.1:8004');
 
     server1.on('a message came', function(m, data){
+      // note that m.data and data are equivalent
       console.log('server 1 got data', data);
     });
   
-    server2.on('a message came', function(){
+    server2.on('a message came', function(m, data){
       console.log('server 2 got data', data);
     });
   
-    server3.on('a message came', function(){
+    server3.on('a message came', function(m, data){
       console.log('server 3 got data', data);
     });
   
-    server4.on('a message came', function(){
+    server4.on('a message came', function(m, data){
       console.log('server 4 got data', data);
     });
   
