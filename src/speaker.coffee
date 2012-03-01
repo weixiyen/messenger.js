@@ -12,7 +12,7 @@ class Speaker extends MessengerBase
     @waiters = {}
     @socketIterator = 0
     
-    for address in @arrayAddresses(addresses)
+    for address in addresses
       @connect(address)
   
   connect: (address) ->
@@ -73,12 +73,6 @@ class Speaker extends MessengerBase
       
     for socket in @sockets
       socket.write(@prepareJsonToSend(payload))
-    
-  arrayAddresses: (addresses) ->
-    if addresses instanceof Array
-      return addresses
-      
-    return [addresses]
   
   generateUniqueId: ->
     id = 'id-' + @uniqueId
