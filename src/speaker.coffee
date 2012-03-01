@@ -2,7 +2,7 @@ net = require 'net'
 MessengerBase = require './messengerBase'
 
 ERR_REQ_REFUSED = -1
-MAX_WAITERS = 9999999999
+MAX_WAITERS = 999999999
 
 class Speaker extends MessengerBase
   
@@ -10,6 +10,7 @@ class Speaker extends MessengerBase
     @uniqueId = 1
     @sockets = []
     @waiters = {}
+    @waitersToFlush = {}
     @socketIterator = 0
     
     for address in @arrayAddresses(addresses)
@@ -37,6 +38,7 @@ class Speaker extends MessengerBase
           
         @waiters[message.id](message.data)
         delete @waiters[message.id]
+        delete @waitersToFlush[message.id]
     
     socket.on 'end', ->
       socket.connect(port, host)
@@ -60,6 +62,7 @@ class Speaker extends MessengerBase
       data: data
       
     @waiters[messageId] = callback
+    @waitersToFlush[messageId] = true
     @sockets[@socketIterator++].write(payload)
     
   shout: (subject, data) ->
@@ -77,10 +80,16 @@ class Speaker extends MessengerBase
     return [addresses]
   
   generateUniqueId: ->
-    if !@waiters['id-' + @uniqueId]
-      return 'id-' + @uniqueId
-    
+    id = 'id-' + @uniqueId
+    if !@waiters[id]
+      return id
+      
     @uniqueId = 1 if @uniqueId++ == MAX_WAITERS
+    
+    if @waitersToFlush[@uniqueId]
+      delete @waitersToFlush[@uniqueId]
+      delete @waiters[@uniqueId]
+    
     return @generateUniqueId()
     
 module.exports = Speaker
