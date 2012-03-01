@@ -2,10 +2,12 @@ net = require 'net'
 MessengerBase = require './messengerBase'
 
 ERR_REQ_REFUSED = -1
+MAX_WAITERS = 9999999999
 
 class Speaker extends MessengerBase
   
   constructor: (addresses) ->
+    @uniqueId = 1
     @sockets = []
     @waiters = {}
     @socketIterator = 0
@@ -73,5 +75,12 @@ class Speaker extends MessengerBase
       return addresses
       
     return [addresses]
+  
+  generateUniqueId: ->
+    if !@waiters['id-' + @uniqueId]
+      return 'id-' + @uniqueId
+    
+    @uniqueId = 1 if @uniqueId++ == MAX_WAITERS
+    return @generateUniqueId()
     
 module.exports = Speaker

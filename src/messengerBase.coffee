@@ -1,9 +1,4 @@
-uuid = require 'node-uuid'
-
 class MessengerBase
-  
-  generateUniqueId: ->
-    return uuid.v1()
     
   getHostByAddress: (address) ->
     if typeof address == 'number'

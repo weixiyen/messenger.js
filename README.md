@@ -124,7 +124,7 @@ Example
 
     setTimeout(function(){
       // request here instead of shout to only access 1 server
-      client.request('a message came', {some: 'data}, function(data){
+      client.request('a message came', {some: 'data'}, function(data){
         console.log(data.greetings);
       });
     }, 2000);
@@ -147,6 +147,7 @@ Example
     
     function authRequired(m, data) {
       if (data.authorized) {
+        m.data.coolness = 10; // modify m.data if you want it passed, not data
         m.next(); // continuation passing
         return;
       }
@@ -154,7 +155,7 @@ Example
     }
     
     server.on('protected request', authRequired, function(m, data){
-      m.reply({you:'got past security'})
+      m.reply({you:'got past security with a coolness factor of ' + data.coolness})
     });
     
     var auth = false;
