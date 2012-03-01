@@ -43,6 +43,7 @@ Messenger.js is very flexible and can handle everything you need.
 - Fault tolerant: clients will reconnect to servers even if server goes down and comes back later
 - Elegant API
 - Easily involves multiple servers
+- Zero dependencies on other libraries
 
 Pub Sub Example
 -------------
