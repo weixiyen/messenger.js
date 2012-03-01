@@ -6,6 +6,6 @@
   "main": "./lib/messenger.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/weixiyen/messenger.git"
+    "url": "https://github.com/weixiyen/messenger.js.git"
   }
 }
