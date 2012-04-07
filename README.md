@@ -84,7 +84,7 @@ server4.on('a message came', function(m, data){
 var client = messenger.createSpeaker(8001, 8002, 8003, 8004);
 
 setInterval(function(){
-  client.shout('a message came', {some: 'data});
+  client.shout('a message came', {some: data});
 }, 1000);
 ```
 
