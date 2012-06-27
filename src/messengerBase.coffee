@@ -1,5 +1,7 @@
 class MessengerBase
-    
+  constructor: ->
+    @savedBuffer = '';
+
   getHostByAddress: (address) ->
     if typeof address == 'number'
       return null
@@ -18,8 +20,15 @@ class MessengerBase
     return JSON.stringify(json) + '\0'
     
   tokenizeData: (data) ->
+    data = @savedBuffer + data
     tokens = data.toString().split('\0')
-    tokens.pop()
+    lastToken = tokens.pop()
+
+    if lastToken
+      @savedBuffer += lastToken
+      return []
+
+    @savedBuffer = ''
     return tokens
 
 module.exports = MessengerBase

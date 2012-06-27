@@ -4,6 +4,8 @@ MessengerBase = require './messengerBase'
 class Listener extends MessengerBase
   
   constructor: (address) ->
+    super()
+
     @remoteMethods = {}
     @host = @getHostByAddress(address)
     @port = @getPortByAddress(address)

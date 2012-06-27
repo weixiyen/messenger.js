@@ -7,6 +7,8 @@ MAX_WAITERS = 9999999
 class Speaker extends MessengerBase
   
   constructor: (addresses) ->
+    super()
+
     @uniqueId = 1
     @sockets = []
     @waiters = {}
