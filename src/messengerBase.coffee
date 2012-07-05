@@ -20,12 +20,10 @@ class MessengerBase
     return JSON.stringify(json) + '\0'
     
   tokenizeData: (data) ->
-    data = @savedBuffer + data
-    tokens = data.toString().split('\0')
-    lastToken = tokens.pop()
-
-    if lastToken
-      @savedBuffer += lastToken
+    @savedBuffer += data
+    tokens = @savedBuffer.split('\0')
+    
+    if tokens.pop()
       return []
 
     @savedBuffer = ''
