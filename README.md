@@ -204,7 +204,7 @@ Example
 var messenger = require('messenger');
 
 var server = messenger.createListener(8000);
-var client = messenger.createClient(8000);
+var client = messenger.createSpeaker(8000);
 
 function authRequired(m, data) {
   if (data.authorized) {
