@@ -44,7 +44,9 @@ class Speaker extends MessengerBase
       socket.connect(port, host)
     
     socket.on 'error', ->
-      socket.connect(port, host)
+      setTimeout ->
+        socket.connect(port, host)
+      , 1000
 
   request: (subject, data, callback=null) ->
     @send subject, data, callback
