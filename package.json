@@ -2,7 +2,7 @@
   "name": "messenger",
   "description": "A json communication layer for node.js",
   "author": "Weixi Yen",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "./lib/messenger.js",
   "repository": {
     "type": "git",
