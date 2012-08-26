@@ -18,11 +18,14 @@ class Speaker extends MessengerBase
       @connect(address)
   
   connect: (address) ->
+    self = @
+    
     host = @getHostByAddress(address)
     port = @getPortByAddress(address)
     
     socket = new net.Socket
     
+    socket.uniqueSocketId = @generateUniqueId()
     socket.setEncoding('utf8')
     socket.setNoDelay(true)
     socket.setMaxListeners(Infinity)
@@ -40,12 +43,21 @@ class Speaker extends MessengerBase
         @waiters[message.id](message.data)
         delete @waiters[message.id]
     
-    socket.on 'end', ->
-      socket.connect(port, host)
-    
     socket.on 'error', ->
+    socket.on 'close', =>
+      index = 0
+      
+      for sock in @sockets
+        if sock.uniqueSocketId == socket.uniqueSocketId
+          break
+        index += 1
+        
+      @sockets.splice index, 1
+      
+      socket.destroy()
+      
       setTimeout ->
-        socket.connect(port, host)
+        self.connect(address)
       , 1000
 
   request: (subject, data, callback=null) ->
