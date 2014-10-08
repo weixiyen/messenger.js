@@ -14,6 +14,9 @@ class Speaker extends MessengerBase
     @waiters = {}
     @socketIterator = 0
     
+    if typeof address == 'string'
+      addresses = [].concat.apply([],addresses);
+
     for address in addresses
       @connect(address)
   
