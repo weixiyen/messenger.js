@@ -1,0 +1,9 @@
+language: node_js
+
+node_js:
+  - "iojs"
+  - "iojs-v1.0.4" 
+  
+env: 
+  - TEST_SUITE=node
+sudo: false

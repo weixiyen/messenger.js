@@ -7,5 +7,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/weixiyen/messenger.js.git"
+  },
+  "dependencies": {
+    "generic-pool": "^2.4.1",
+    "q": "^1.4.1"
   }
 }
