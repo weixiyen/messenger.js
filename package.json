@@ -11,5 +11,12 @@
   "dependencies": {
     "generic-pool": "^2.4.1",
     "q": "^1.4.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
   }
 }

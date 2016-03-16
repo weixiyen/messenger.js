@@ -14,10 +14,6 @@ the syntax is the same, only this repo supports both a single connection, and a 
 
 this packege uses [node-pool](https://github.com/coopernurse/node-pool) to do the connection pooling
 
-What is Messenger.js?
-------------------
-Messenger.js is a library that makes network communication via JSON dead simple and insanely fast!
-
 Example:
 
 ```javascript
@@ -26,13 +22,13 @@ var poolOptions = {
     max      : 10,
     min      : 2,
     idleTimeoutMillis : 30000
-}
+};
 
-client = messenger.createSpeakerPool(8000, poolOptions);
-server = messenger.createListener(8000);
+var client = messenger.createSpeakerPool(8000, poolOptions);
+var server = messenger.createListener(8000);
 
 server.on('give it to me', function(message, data){
-  message.reply({'you':'got it'})
+  message.reply({'you':'got it'});
 });
 
 setInterval(function(){
