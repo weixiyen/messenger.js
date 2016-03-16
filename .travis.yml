@@ -12,4 +12,6 @@ node_js:
   - "0.10"
   - "iojs"
   
+before_script: chmod 0777 ./node_modules/.bin/mocha
+
 sudo: true
