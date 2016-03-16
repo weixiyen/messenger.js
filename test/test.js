@@ -1,5 +1,5 @@
-﻿var expect = require('chai').expect(),
-    messenger = require('messenger-pool');
+﻿var expect = require('chai').expect,
+    messenger = require('../lib/messenger.js');
 
 
 describe('server', function () {
