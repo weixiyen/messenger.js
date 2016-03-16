@@ -5,7 +5,6 @@ Installation
     npm install messenger-pool
 
 [![Build Status](https://travis-ci.org/MoLow/messenger-pool.svg?branch=master)](https://travis-ci.org/MoLow/messenger-pool)
-[![Coverage Status](https://coveralls.io/repos/MoLow/messenger-pool/badge.svg?branch=masterservice=github)](https://coveralls.io/github/MoLow/messenger-pool?branch=master)
 [![npm](https://img.shields.io/npm/v/messenger-pool.svg)](https://www.npmjs.com/package/messenger-pool)
 ![dependencies](https://img.shields.io/david/MoLow/messenger-pool.svg)
 
@@ -19,8 +18,8 @@ Example:
 ```javascript
 var messenger = require('messenger-pool');
 var poolOptions = {
-    max      : 10,
-    min      : 2,
+    max : 10,
+    min : 2,
     idleTimeoutMillis : 30000
 };
 
