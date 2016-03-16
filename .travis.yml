@@ -12,6 +12,4 @@ node_js:
   - "0.10"
   - "iojs"
   
-env: 
-  - TEST_SUITE=node
-sudo: false
+sudo: true
