@@ -2,7 +2,7 @@
   "name": "messenger-pool",
   "description": "A connection pool for communication between node.js instances/servers",
   "author": "Moshe Atlow",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "./lib/messenger.js",
   "repository": {
     "type": "git",
