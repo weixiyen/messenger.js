@@ -1,11 +1,22 @@
 {
-  "name": "messenger",
-  "description": "A json communication layer for node.js",
-  "author": "Weixi Yen",
-  "version": "0.0.9",
+  "name": "messenger-pool",
+  "description": "A connection pool for communication between node.js instances/servers",
+  "author": "Moshe Atlow",
+  "version": "0.0.6",
   "main": "./lib/messenger.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/weixiyen/messenger.js.git"
+    "url": "https://github.com/MoLow/messenger-pool"
+  },
+  "dependencies": {
+    "generic-pool": "^2.4.1",
+    "q": "^1.4.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
   }
 }
